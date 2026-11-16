@@ -74,8 +74,27 @@ bash /sdcard/Download/nix-native/native-test.sh                # check everythin
 ```
 
 `session/` has the login (falls back to proot if anything is missing), the setup
-script, an example home-manager flake, and the test (`ALL PASSED` expected; each FAIL
+script, an example home-manager flake, the benchmark, and the test (`ALL PASSED` expected; each FAIL
 names the missing piece).
+
+## How much faster
+
+Pixel 10 Pro Fold, LineageOS 24, Nix 2.34.9 and the same nixpkgs pin in both sessions;
+median of 5 runs (`session/bench.sh`, run once natively and once inside the proot session):
+
+| Test | native | proot | factor |
+|---|---|---|---|
+| bash login shell start | 0.044 s | 0.098 s | ×2.2 |
+| `python3 -c pass` | 0.050 s | 0.180 s | ×3.6 |
+| Emacs start (`-Q --batch`) | 0.079 s | 0.301 s | ×3.8 |
+| Emacs loading org-mode | 0.165 s | 1.428 s | ×8.7 |
+| `nix eval nixpkgs#hello.version` | 0.217 s | 1.307 s | ×6.0 |
+| `find` over the store (stat-heavy) | 0.065 s | 1.353 s | ×20.8 |
+| tiny binary (exec latency) | 0.020 s | 0.091 s | ×4.5 |
+
+proot traps every system call, so the gap grows with the number of calls: starting a
+program costs 2–4×, anything that opens many files (loading Lisp, evaluating Nix,
+walking the store) 6–21×.
 
 ## Status and limits
 
