@@ -8,7 +8,8 @@ app as the terminal.
 Tested on a Pixel 10 Pro Fold (rango) running LineageOS 24 (Android 17), bootloader
 relocked with our own key. Built and verified on the phone: glibc programs, Nix
 local builds, `home-manager switch`, Python multiprocessing, a normal interactive
-bash. The device build this comes from: [lineage-rango](#related).
+bash. The device build this comes from:
+[lineage-rango-android-native-nix](https://github.com/1alecthenice1/lineage-rango-android-native-nix).
 
 ## Why
 
@@ -87,8 +88,9 @@ names the missing piece).
 
 ## Related
 
-- lineage-rango — the full device build (signing with own keys, relock, OTA updates)
-  this is extracted from.
+- [lineage-rango-android-native-nix](https://github.com/1alecthenice1/lineage-rango-android-native-nix)
+  — the full device build (signing with own keys, relock, OTA updates) this is
+  extracted from; the worked example.
 - nix-on-droid#252 (rooted bind mounts → "Unknown signal 31"), #192 (removing proot).
 
 ## Licence
