@@ -1,0 +1,14 @@
+android-native-nix
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+patches/bionic, patches/frameworks/base: modifications to files of the Android Open
+Source Project, Copyright (C) The Android Open Source Project, Apache License 2.0.
+The original copyright headers are kept in the patched files.
+
+patches/system/sepolicy, vendor/native-nix/sepolicy: based on AOSP's system/sepolicy,
+which its NOTICE declares public domain; sepolicy/private/nix_app (in the patch)
+mirrors the rules of AOSP's untrusted_app_27.te.
+
+vendor/native-nix/sepolicy/certs/nix-on-droid-fdroid.x509.pem: public signing
+certificate of the Nix-on-Droid app as built by F-Droid, included only to identify
+that app (mac_permissions.xml).
